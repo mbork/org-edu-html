@@ -1,0 +1,5 @@
+#+TITLE: org-edu-html
+#+AUTHOR: Marcin Borkowski <mbork@mbork.pl>
+
+A variant of the Emacs Org-mode HTML exporter for educational materials.
+
