@@ -5,7 +5,7 @@
 (org-export-define-derived-backend 'edu-html 'html
   :translate-alist '((template . org-edu-html-template)
 		     (plain-list . org-edu-html-plain-list)
-		     (item . org-edu-html-item))
+		     (item . org-edu-html-item)))
 
 (defun org-edu-html-template (contents info)
   (concat
