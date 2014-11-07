@@ -36,17 +36,36 @@
    "</body>\n</html>\n"))
 
 (defun org-edu-html-plain-list (plain-list contents info)
-  (let* ((type (org-element-property :type plain-list))
-	 (test (org-export-read-attribute :attr_edu plain-list :test)))
-    (format "%s\n%s%s"
-	    (org-edu-html-begin-plain-list type test)
-	    contents
-	    (org-html-end-plain-list type test))))
+  (cond
+   ((string= (org-export-read-attribute :attr_edu plain-list :test) "mct")
+    (org-edu-html-mct-test plain-list contents info))
+   (t (org-html-plain-list plain-list contents info))))
 
-(defun org-edu-html-begin-plain-list (type test)
-  (let ((type-class (case type
-		      (ordered "ol")
-		      (unordered "ul")
-		      (descriptive "dl"))))
-    (format "<%s class=\"org-%s%s\">" type-class type-class
-	    (if test (concat " " test) ""))))
+(defun org-edu-html-mct-test (plain-list contents info)
+  (format "%s\n%s\n%s"
+   "<form>\n<fieldset>"
+   contents
+   "</fieldset>\n</form>"
+  ))
+
+(defun org-edu-html-item (item contents info)
+  ;; (org-html-item (item contents info)))
+  (cond
+   ((string=
+     (org-export-read-attribute :attr_edu (org-element-property :parent item) :test) "mct")
+    (org-edu-html-mct-item item contents info))
+    (t (org-html-item (item contents info)))))
+
+(defun right-answer-code ()
+  "Value of the `value' attribute of a checkbox of the right answer."
+  "1")
+
+(defun wrong-answer-code ()
+  "Value of the `value' attribute of a checkbox of the wrong answer."
+  "0")
+
+(defun org-edu-html-mct-item (item contents info)
+  (let ((checkbox (org-element-property :checkbox item)))
+  (format "<div><input type=\"checkbox\" value=\"%s\">\n%s</div>"
+	  (if (eql checkbox 'on) (right-answer-code) (wrong-answer-code))
+	  contents)))
