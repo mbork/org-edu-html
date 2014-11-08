@@ -16,7 +16,7 @@ And now a single-choice question:
 - [ ] Wrong answer again.
 - [ ] Boooo!.
 - [X] That's good!.
-- [ ] That's also good.
+- [ ] That's wrong.
 
 Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
