@@ -70,6 +70,6 @@
 (defun org-edu-html-mct-item (item contents info &optional sct)
   (let ((checkbox (org-element-property :checkbox item)))
   (format "<div><input type=\"%s\" value=\"%s\">\n%s</div>"
-	  (if sct "radiobutton" "checkbox")
+	  (if sct "radio" "checkbox")
 	  (if (eql checkbox 'on) (right-answer-code) (wrong-answer-code))
 	  contents)))
