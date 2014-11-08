@@ -44,10 +44,9 @@
    (t (org-html-plain-list plain-list contents info))))
 
 (defun org-edu-html-mct-test (plain-list contents info &optional sct)
-  (format "%s\n%s\n%s"
-   (format "<form>\n<fieldset class=\"%s\">" (if sct "sct" "mct"))
-   contents
-   "</fieldset>\n</form>"))
+  (format "<form>\n<fieldset class=\"%s\">\n%s\n</fieldset>\n</form>"
+   (if sct "sct" "mct")
+   contents))
 
 (defun org-edu-html-item (item contents info)
   ;; (org-html-item (item contents info)))
