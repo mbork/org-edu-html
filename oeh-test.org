@@ -4,12 +4,19 @@
 
 * Introductory chapter
 ** Motivation
-A multiple choice question:
+A multiple-choice question:
 #+ATTR_EDU: :test mct
 - [ ] Wrong answer.
 - [ ] Another wrong answer.
 - [X] Right answer.
-- [ ] Yet another wrong answer.
+- [X] Another right answer.
+
+And now a single-choice question:
+#+ATTR_EDU: :test sct
+- [ ] Wrong answer again.
+- [ ] Boooo!.
+- [X] That's good!.
+- [ ] That's also good.
 
 Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
