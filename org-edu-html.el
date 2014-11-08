@@ -39,14 +39,15 @@
   (cond
    ((string= (org-export-read-attribute :attr_edu plain-list :test) "mct")
     (org-edu-html-mct-test plain-list contents info))
+   ((string= (org-export-read-attribute :attr_edu plain-list :test) "sct")
+    (org-edu-html-mct-test plain-list contents info t))
    (t (org-html-plain-list plain-list contents info))))
 
-(defun org-edu-html-mct-test (plain-list contents info)
+(defun org-edu-html-mct-test (plain-list contents info &optional sct)
   (format "%s\n%s\n%s"
-   "<form>\n<fieldset>"
+   (format "<form>\n<fieldset class=\"%s\">" (if sct "sct" "mct"))
    contents
-   "</fieldset>\n</form>"
-  ))
+   "</fieldset>\n</form>"))
 
 (defun org-edu-html-item (item contents info)
   ;; (org-html-item (item contents info)))
@@ -54,7 +55,10 @@
    ((string=
      (org-export-read-attribute :attr_edu (org-element-property :parent item) :test) "mct")
     (org-edu-html-mct-item item contents info))
-    (t (org-html-item (item contents info)))))
+   ((string=
+     (org-export-read-attribute :attr_edu (org-element-property :parent item) :test) "sct")
+    (org-edu-html-mct-item item contents info t))
+   (t (org-html-item item contents info))))
 
 (defun right-answer-code ()
   "Value of the `value' attribute of a checkbox of the right answer."
@@ -64,8 +68,9 @@
   "Value of the `value' attribute of a checkbox of the wrong answer."
   "0")
 
-(defun org-edu-html-mct-item (item contents info)
+(defun org-edu-html-mct-item (item contents info &optional sct)
   (let ((checkbox (org-element-property :checkbox item)))
-  (format "<div><input type=\"checkbox\" value=\"%s\">\n%s</div>"
+  (format "<div><input type=\"%s\" value=\"%s\">\n%s</div>"
+	  (if sct "radiobutton" "checkbox")
 	  (if (eql checkbox 'on) (right-answer-code) (wrong-answer-code))
 	  contents)))
