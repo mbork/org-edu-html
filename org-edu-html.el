@@ -30,7 +30,7 @@
    ;; Closing the global div.
    (format "</%s>\n"
 	   (nth 1 (assq 'content org-html-divs)))
-   ;; Postamble (should probably be changed)
+   ;; Postamble (TODO: should probably be changed)
    (org-html--build-pre/postamble 'postamble info)
    ;; Closing document.
    "</body>\n</html>\n"))
