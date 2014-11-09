@@ -96,6 +96,13 @@ pretium, ultricies non, pharetra in, velit. Integer arcu est,
 nonummy in, fermentum faucibus, egestas vel, odio.
 
 ** Fourth section
+A multiple-choice question in another chapter:
+#+ATTR_EDU: :test mct
+- [ ] Wrong answer.
+- [ ] Another wrong answer.
+- [X] Right answer.
+- [X] Another right answer.
+
 Sed commodo posuere pede. Mauris ut est. Ut
 quis purus. Sed ac odio. Sed vehicula hendrerit sem. Duis non odio.
 Morbi ut dui. Sed accumsan risus eget odio. In hac habitasse platea
