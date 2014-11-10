@@ -123,9 +123,8 @@ ultrices a, dui.
 #+OPTIONS: toc:nil
 * COMMENT Lisp
 (progn
-  (if (get-buffer "*export test*")
-      (kill-buffer "*export test*"))
-  (org-export-to-buffer 'edu-html "*export test*")
-  (with-current-buffer "*export test*"
-    (write-file "oeh-test.html"))
+  (if (get-buffer "oeh-test.html")
+      (kill-buffer "oeh-test.html"))
+  (org-export-to-buffer 'edu-html "oeh-test.html")
+  (write-file "oeh-test.html")
   (view-mode 1))
