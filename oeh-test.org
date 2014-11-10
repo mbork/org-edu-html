@@ -126,4 +126,6 @@ ultrices a, dui.
   (if (get-buffer "*export test*")
       (kill-buffer "*export test*"))
   (org-export-to-buffer 'edu-html "*export test*")
+  (with-current-buffer "*export test*"
+    (write-file "oeh-test.html"))
   (view-mode 1))
