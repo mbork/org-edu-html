@@ -11,7 +11,9 @@
   "Where to get jQuery from.")
 
 (defun org-edu-html-build-jquery-config ()
-  (format "<script src=\"%s\"></script>" org-edu-html-js-address))
+  (concat
+   (format "<script src=\"%s\"></script>\n" org-edu-html-js-address)
+   "<script src=\"./org-edu-html.js\"></script>\n"))
 
 (defun org-edu-html-template (contents info)
   (concat
