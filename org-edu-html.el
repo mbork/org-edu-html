@@ -7,6 +7,12 @@
 		     (plain-list . org-edu-html-plain-list)
 		     (item . org-edu-html-item)))
 
+(defvar org-edu-html-js-address "./jquery-2.1.1.min.js"
+  "Where to get jQuery from.")
+
+(defun org-edu-html-build-jquery-config ()
+  (format "<script src=\"%s\"></script>" org-edu-html-js-address))
+
 (defun org-edu-html-template (contents info)
   (concat
    "<!DOCTYPE html>\n"
@@ -15,6 +21,7 @@
    (org-html--build-meta-info info)	;!!
 ;   (org-html--build-head info)		;!!
    (org-html--build-mathjax-config info) ;!!
+   (org-edu-html-build-jquery-config)
    "</head>\n"
    "<body>\n"
    (org-html--build-pre/postamble 'preamble info)
