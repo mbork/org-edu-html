@@ -77,9 +77,16 @@
   "0")
 
 (defun org-edu-html-mct-item (item contents info &optional sct)
-  (let ((checkbox (org-element-property :checkbox item)))
-  (format "<div><input type=\"%s\" name=\"%s\" value=\"%s\">\n%s</div>"
-	  (if sct "radio" "checkbox")
-	  (org-export-get-ordinal (org-element-property :parent item) info '(plain-list))
-	  (if (eql checkbox 'on) (right-answer-code) (wrong-answer-code))
-	  contents)))
+  (let* ((state (org-element-property :checkbox item))
+	 (name (number-to-string (org-export-get-ordinal
+				  (org-element-property :parent item)
+				  info
+				  '(plain-list))))
+	 (id (concat name (format "%s" (org-export-get-ordinal item info)))))
+    (format "<div><input type=\"%s\" name=\"%s\" id=\"%s\" value=\"%s\">\n<label for=\"%s\">%s</label></div>"
+	    (if sct "radio" "checkbox")
+	    name
+	    id
+	    (if (eql state 'on) (right-answer-code) (wrong-answer-code))
+	    id
+	    contents)))
