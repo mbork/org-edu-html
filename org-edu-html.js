@@ -7,9 +7,9 @@ function OkWrongSiblings(element) {
 
 $( document ).ready(function() {
     $("fieldset.sct").append(
-	$('<button></button>').attr('type','button').text('Check').addClass('sct-check'),
-	'<div class="ok" hidden>OK!</div>',
-	'<div class="wrong" hidden>Wrong...</div>');
+	'<button type="button" class="sct-check">Check</button>',
+	'<div class="ok" style="cursor:default" hidden>OK!</div>',
+	'<div class="wrong style="cursor:default" hidden>Wrong...</div>');
     $('button.sct-check').click(function() {
 	if($(this).parent().children('div').children('input:checked').attr('value') == 1) {
 	    OkWrongSiblings($(this)).hide();
@@ -18,6 +18,9 @@ $( document ).ready(function() {
 	    OkWrongSiblings($(this)).hide();
 	    $(this).parent().children().filter('div.wrong').show();
 	};
+    });
+    $('div.ok,div.wrong').click(function () {
+	$(this).hide();
     });
 });
 
