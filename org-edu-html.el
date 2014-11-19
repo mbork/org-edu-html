@@ -7,12 +7,12 @@
 		     (plain-list . org-edu-html-plain-list)
 		     (item . org-edu-html-item)))
 
-(defvar org-edu-html-js-address "./jquery-2.1.1.min.js"
+(defvar org-edu-html-jquery-address "./jquery-2.1.1.min.js"
   "Where to get jQuery from.")
 
 (defun org-edu-html-build-jquery-config ()
   (concat
-   (format "<script src=\"%s\"></script>\n" org-edu-html-js-address)
+   (format "<script src=\"%s\"></script>\n" org-edu-html-jquery-address)
    "<script src=\"./org-edu-html.js\"></script>\n"))
 
 (defun org-edu-html-template (contents info)
