@@ -7,6 +7,12 @@
 A multiple-choice question:
 #+ATTR_EDU: :test mct
 - [ ] Wrong answer.
+  #+BEGIN_COMMENT_OK
+  This is a remark for the good answer.
+  #+END_COMMENT_OK
+  #+BEGIN_COMMENT_WRONG
+  This is a remark in case someone gives a wrong answer.
+  #+END_COMMENT_WRONG
 - [ ] Another wrong answer.
 - [X] Right answer.
 - [X] Another right answer.
