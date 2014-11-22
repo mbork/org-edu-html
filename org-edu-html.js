@@ -24,7 +24,7 @@ $( document ).ready(function() {
 	'<div class="ok" style="cursor:default" hidden>OK!</div>',
 	'<div class="wrong" style="cursor:default" hidden>Wrong...</div>');
     $('button.mct-check').click(function() {
-	$(this).parent().find('div.ok,div.wrong,div.comment_ok,div.comment_wrong').hide()
+	$(this).parent().find('div.ok,div.wrong,div.comment_ok,div.comment_wrong').hide();
     	var somethingIsWrong = false;
     	$(this).parent().children('div').children('input').each(function() {
     	    if(($(this).attr('value') == 1) != $(this).is(':checked')) {
