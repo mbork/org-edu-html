@@ -42,8 +42,12 @@ $( document ).ready(function() {
     	    $(this).parent().children().filter('div.wrong').show();
     	}
     });
-    $('div.ok,div.wrong,div.comment_ok,div.comment_wrong').hide().click(function () {
-	$(this).hide();
+    $('div.ok,div.wrong').hide().click(function () {
+	$(this).fadeOut();
+    });
+    $('div.comment_ok,div.comment_wrong').hide().click(function () {
+	$(this).fadeOut();
+	return false; // to prevent bubbling and (un)checking answer by hiding
     });
 });
 
