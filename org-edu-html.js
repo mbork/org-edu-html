@@ -2,7 +2,7 @@
 // (c) 2014 mbork.pl
 
 function OkWrongSiblings(element) {
-    return element.parent().children().filter('div.ok,div.wrong');
+    return element.siblings().filter('div.ok,div.wrong');
 }
 
 $( document ).ready(function() {
@@ -26,7 +26,7 @@ $( document ).ready(function() {
     $('button.mct-check').click(function() {
 	$(this).parent().find('div.ok,div.wrong,div.comment_ok,div.comment_wrong').hide();
     	var somethingIsWrong = false;
-    	$(this).parent().children('div').children('input').each(function() {
+    	$(this).siblings('div').children('input').each(function() {
     	    if(($(this).attr('value') == 1) != $(this).is(':checked')) {
     	    	somethingIsWrong = true;
 		$(this).parent().find('div.comment_wrong').show();
@@ -36,10 +36,10 @@ $( document ).ready(function() {
     	});
     	if(!somethingIsWrong) {
     	    OkWrongSiblings($(this)).hide();
-    	    $(this).parent().children().filter('div.ok').show();
+    	    $(this).siblings('div.ok').show();
     	} else {
     	    OkWrongSiblings($(this)).hide();
-    	    $(this).parent().children().filter('div.wrong').show();
+    	    $(this).siblings('div.wrong').show();
     	}
     });
     $('div.ok,div.wrong').hide().click(function () {
