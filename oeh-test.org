@@ -15,6 +15,12 @@ A multiple-choice question:
   #+END_COMMENT_WRONG
 - [ ] Another wrong answer.
 - [X] Right answer.
+  #+BEGIN_COMMENT_OK
+  This is a remark for the good answer.
+  #+END_COMMENT_OK
+  #+BEGIN_COMMENT_WRONG
+  This is a remark in case someone gives a wrong answer.
+  #+END_COMMENT_WRONG
 - [X] Another right answer.
 
 And now a single-choice question:
@@ -22,7 +28,19 @@ And now a single-choice question:
 - [ ] Wrong answer again.
 - [ ] Boooo!
 - [X] That's good!
+  #+BEGIN_COMMENT_OK
+  This is a remark for the good answer.
+  #+END_COMMENT_OK
+  #+BEGIN_COMMENT_WRONG
+  This is a remark in case someone gives a wrong answer.
+  #+END_COMMENT_WRONG
 - [ ] That's wrong.
+  #+BEGIN_COMMENT_OK
+  This is a remark for the good answer.
+  #+END_COMMENT_OK
+  #+BEGIN_COMMENT_WRONG
+  This is a remark in case someone gives a wrong answer.
+  #+END_COMMENT_WRONG
 
 Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
