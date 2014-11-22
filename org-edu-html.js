@@ -4,7 +4,7 @@
 // This function returns a jQuery object containing all the div elements
 // with classes "ok" and "wrong" from the set of siblings of "element".
 function OkWrongSiblings(element) {
-    return element.siblings().filter('div.ok,div.wrong');
+    return element.siblings('div.ok,div.wrong');
 }
 
 $( document ).ready(function() {
