@@ -1,13 +1,8 @@
 // The JavaScript part of the Org-Edu-HTML project
 // (c) 2014 mbork.pl
 
-// This function returns a jQuery object containing all the div elements
-// with classes "ok" and "wrong" from the set of siblings of "element".
-function OkWrongSiblings(element) {
-    return element.siblings('div.ok,div.wrong');
-}
-
 $( document ).ready(function() {
+
     // Append a "Check" button and OK/Wrong boxes (divs) to a SCT
     $("fieldset.sct").append(
 	'<button type="button" class="sct-check">Check</button>',
@@ -18,12 +13,12 @@ $( document ).ready(function() {
     $('button.sct-check').click(function() {
 	if($(this).parent().children('div').children('input:checked').attr('value') == 1) {
 	    // If the right answer is checked, hide any OK/Wrong info...
-	    OkWrongSiblings($(this)).hide();
+	    $(this).siblings('div.ok,div.wrong').hide();
 	    // ...and show the relevant one.
 	    $(this).parent().children().filter('div.ok,div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the same.
-	    OkWrongSiblings($(this)).hide();
+	    $(this).siblings('div.ok,div.wrong').hide();
 	    $(this).parent().children().filter('div.wrong,div.comment_wrong').show();
 	};
     });
@@ -55,10 +50,10 @@ $( document ).ready(function() {
 
 	// Show the OK/Wrong box for the whole question
     	if(!somethingIsWrong) {
-    	    OkWrongSiblings($(this)).hide();
+    	    $(this).siblings('div.ok,div.wrong').hide();
     	    $(this).siblings('div.ok').show();
     	} else {
-    	    OkWrongSiblings($(this)).hide();
+    	    $(this).siblings('div.ok,div.wrong').hide();
     	    $(this).siblings('div.wrong').show();
     	}
     });
