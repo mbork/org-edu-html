@@ -34,7 +34,6 @@ $( document ).ready(function() {
 		$(this).parent().find('div.comment_ok').show();
 	    }
     	});
-	// $(this).parent().find('div.comment_ok,div.comment_wrong').show(); // źle!!!
     	if(!somethingIsWrong) {
     	    OkWrongSiblings($(this)).hide();
     	    $(this).parent().children().filter('div.ok').show();
