@@ -90,3 +90,12 @@
 	    (if (eql state 'on) (right-answer-code) (wrong-answer-code))
 	    id
 	    contents)))
+
+(defun org-edu-html-check-for-block-type (element block-type)
+  "Check whether ELEMENT is inside a BLOCK-TYPE special block."
+  (let ((parent (org-export-get-parent element)))
+    (cond ((and (eq (car parent) 'special-block)
+		(string= (org-element-property :type parent) block-type))
+	   t)
+	  (parent
+	   (org-edu-html-check-for-block-type parent block-type)))))
