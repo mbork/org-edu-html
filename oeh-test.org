@@ -42,6 +42,12 @@ And now a single-choice question:
   This is a remark in case someone gives a wrong answer.
   #+END_COMMENT_WRONG
 
+A cloze test:
+#+BEGIN_CLOZE
+A _cloze_ test is a test where the _student|learner_ has to type a
+missing _word|phrase_.
+#+END_CLOZE
+
 Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
 adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu
