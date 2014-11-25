@@ -5,7 +5,8 @@
 (org-export-define-derived-backend 'edu-html 'html
   :translate-alist '((template . org-edu-html-template)
 		     (plain-list . org-edu-html-plain-list)
-		     (item . org-edu-html-item)))
+		     (item . org-edu-html-item)
+		     (underline . org-edu-html-underline)))
 
 (defvar org-edu-html-jquery-address "./jquery-2.1.1.min.js"
   "Where to get jQuery from.")
@@ -100,3 +101,14 @@ string) special block."
 	   t)
 	  (parent
 	   (org-edu-html-check-for-block-type parent block-type)))))
+
+(defun org-edu-html-underline (underline contents info)
+  "This (ab)uses underline to make cloze tests.  If the underline
+is anywhere within a CLOZE special block, it will be turned into
+a cloze."
+  (if (org-edu-html-check-for-block-type underline "CLOZE")
+      (org-edu-html-cloze underline contents info)
+    (org-html-underline underline contents info)))
+
+(defun org-edu-html-cloze (cloze contents info)
+  (format "<input type=\"text\" correct=\"%s\">" contents))
