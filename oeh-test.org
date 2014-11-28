@@ -3,7 +3,7 @@
 #+DATE: 2014-10-31
 
 * Introductory chapter
-** Motivation
+** Multiple-choice question
 A multiple-choice question:
 #+ATTR_EDU: :test mct
 - [ ] Wrong answer.
@@ -23,6 +23,7 @@ A multiple-choice question:
   #+END_COMMENT_WRONG
 - [X] Another right answer.
 
+** Single-choice question
 And now a single-choice question:
 #+ATTR_EDU: :test sct
 - [ ] Wrong answer again.
@@ -42,12 +43,20 @@ And now a single-choice question:
   This is a remark in case someone gives a wrong answer.
   #+END_COMMENT_WRONG
 
+** Cloze test
 A cloze test:
 #+BEGIN_CLOZE
 A _cloze_ test is a test where the _student|learner_ has to type a
 missing _word|phrase_.
+#+BEGIN_COMMENT_OK
+This is the "OK" comment.
+#+END_COMMENT_OK
+#+BEGIN_COMMENT_WRONG
+This is the "wrong" comment.
+#+END_COMMENT_WRONG
 #+END_CLOZE
 
+** Lorem ipsum
 Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
 adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu
