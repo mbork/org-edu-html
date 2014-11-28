@@ -66,5 +66,31 @@ $( document ).ready(function() {
 	$(this).fadeOut();
 	return false; // to prevent bubbling and (un)checking answer by hiding
     });
-});
+
+    // Append a "Check" button and OK/Wrong boxes (divs) to a cloze
+    // test (TODO: buton adding should be abstracted away!)
+    $("div.cloze").append(
+	'<button type="button" class="cloze-check">Check</button>',
+	'<div class="ok" style="cursor:default" hidden>OK!</div>',
+	'<div class="wrong" style="cursor:default" hidden>Wrong...</div>');
+
+    // When the user clicks the "Check" button, check the answers and show appropriate things
+    $('button.cloze-check').click(function() {
+	// Hide possible leftovers from previous trials
+	$(this).parent().find('div.ok,div.wrong,div.comment_ok,div.comment_wrong').hide();
+
+	// Iterate through the answers and check whether all of them are correct.
+	// TODO: refactor to use reduce?
+    	var somethingIsWrong = false;
+    	$(this).parent().find('input[type="text"]').each(function() {
+    	    if(!($.inArray($(this).val(),$(this).attr('correct').split('|')) > -1))
+	       { somethingIsWrong = true; }
+	});
+	if (somethingIsWrong) {
+	    $(this).parent().find('div.comment_wrong').show();
+	} else {
+	    $(this).parent().find('div.comment_ok').show();
+	}
+    	});
+    });
 
