@@ -111,4 +111,10 @@ a cloze."
     (org-html-underline underline contents info)))
 
 (defun org-edu-html-cloze (cloze contents info)
-  (format "<input type=\"text\" correct=\"%s\">" contents))
+  (format "<input type=\"text\" name=\"%s\" correct=\"%s\">"
+	  (org-export-get-ordinal (org-export-get-parent (org-export-get-parent cloze))
+				  info
+				  '(special-block)
+				  (lambda (el info)
+				    (string= (org-element-property :type el) "CLOZE")))
+	  contents))
