@@ -51,12 +51,17 @@
     (org-edu-html-mct-test plain-list contents info))
    ((string= (org-export-read-attribute :attr_edu plain-list :test) "sct")
     (org-edu-html-mct-test plain-list contents info t))
+   ((string= (org-export-read-attribute :attr_edu plain-list :test) "select")
+    (org-edu-html-select-test plain-list contents info))
    (t (org-html-plain-list plain-list contents info))))
 
 (defun org-edu-html-mct-test (plain-list contents info &optional sct)
   (format "<form>\n<fieldset class=\"%s\">\n%s\n</fieldset>\n</form>"
    (if sct "sct" "mct")
    contents))
+
+(defun org-edu-html-select-test (plain-list contents info)
+  (format "<form>\n<select class=\"sct-sel\">\n%s</select>\n</form>" contents))
 
 (defun org-edu-html-item (item contents info)
   ;; (org-html-item (item contents info)))
@@ -67,6 +72,9 @@
    ((string=
      (org-export-read-attribute :attr_edu (org-element-property :parent item) :test) "sct")
     (org-edu-html-mct-item item contents info t))
+   ((string=
+     (org-export-read-attribute :attr_edu (org-element-property :parent item) :test) "select")
+    (org-edu-html-select-item item contents info))
    (t (org-html-item item contents info))))
 
 (defun right-answer-code ()
@@ -91,6 +99,19 @@
 	    (if (eql state 'on) (right-answer-code) (wrong-answer-code))
 	    id
 	    contents)))
+
+(defun org-edu-html-select-item (item contents info)
+  (let* ((state (org-element-property :checkbox item))
+	 (name (number-to-string (org-export-get-ordinal
+				  (org-element-property :parent item)
+				  info
+				  '(plain-list))))
+	 (id (concat name (format "%s" (org-export-get-ordinal item info)))))
+    (format "<option value=\"%s\">%s</option>"
+	    (if (string= state "on") 1 0)
+	    (if (string= (substring-no-properties contents -1) "\n")
+		(substring contents 0 -1)
+	      contents))))
 
 (defun org-edu-html-check-for-block-type (element block-type)
   "Check whether ELEMENT is inside a BLOCK-TYPE (which is a
