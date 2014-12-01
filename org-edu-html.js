@@ -15,11 +15,11 @@ $( document ).ready(function() {
 	    // If the right answer is checked, hide any OK/Wrong info...
 	    $(this).siblings('div.ok,div.wrong').hide();
 	    // ...and show the relevant one.
-	    $(this).parent().children().filter('div.ok,div.comment_ok').show();
+	    $(this).siblings('div.ok,div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the same.
 	    $(this).siblings('div.ok,div.wrong').hide();
-	    $(this).parent().children().filter('div.wrong,div.comment_wrong').show();
+	    $(this).siblings('div.wrong,div.comment_wrong').show();
 	};
     });
 
@@ -47,15 +47,6 @@ $( document ).ready(function() {
 		$(this).parent().find('div.comment_ok').show();
 	    }
     	});
-
-	// Show the OK/Wrong box for the whole question
-    	if(!somethingIsWrong) {
-    	    $(this).siblings('div.ok,div.wrong').hide();
-    	    $(this).siblings('div.ok').show();
-    	} else {
-    	    $(this).siblings('div.ok,div.wrong').hide();
-    	    $(this).siblings('div.wrong').show();
-    	}
     });
 
     // Append a "Check" button and OK/Wrong boxes (divs) to a cloze
