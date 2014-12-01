@@ -55,7 +55,24 @@ This is the "OK" comment.
 This is the "wrong" comment.
 #+END_COMMENT_WRONG
 #+END_CLOZE
+** Single-choice drop-down
+#+BEGIN_SELECT
+3 squared equals
+#+ATTR_EDU: :test select
+- [ ] 1
+- [ ] 3
+- [X] 9
+- [ ] 27
+and that's it!
 
+3 cubed equals
+#+ATTR_EDU: :test select
+- [ ] 1
+- [ ] 3
+- [ ] 9
+- [X] 27
+and that's a bit more difficult.
+#+END_SELECT
 ** Lorem ipsum
 Lorem ipsum dolor sit amet, consectetuer
 adipiscing elit. Ut purus elit, vestibulum ut, placerat ac,
