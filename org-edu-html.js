@@ -5,9 +5,9 @@ $( document ).ready(function() {
 
     // Append a "Check" button and OK/Wrong boxes (divs) to a SCT
     $("fieldset.sct").append(
-	'<button type="button" class="sct-check">Check</button>',
-	'<div class="ok" style="cursor:default" hidden>OK!</div>',
-	'<div class="wrong" style="cursor:default" hidden>Wrong...</div>');
+	'<button type="button" class="sct-check">' + checkName + '</button>',
+	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
+	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.sct-check').click(function() {
@@ -25,9 +25,9 @@ $( document ).ready(function() {
 
     // Append the "Check" button and OK/Wrong boxes (divs) to a MCT
     $("fieldset.mct").append(
-	'<button type="button" class="mct-check">Check</button>',
-	'<div class="ok" style="cursor:default" hidden>OK!</div>',
-	'<div class="wrong" style="cursor:default" hidden>Wrong...</div>');
+	'<button type="button" class="mct-check">' + checkName + '</button>',
+	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
+	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.mct-check').click(function() {
@@ -47,6 +47,11 @@ $( document ).ready(function() {
 		$(this).parent().find('div.comment_ok').show();
 	    }
     	});
+	if (somethingIsWrong) {
+	    $(this).parent().find('div.wrong').show();
+	} else {
+	    $(this).parent().find('div.ok').show();
+	}
     });
 
     // Append a "Check" button and OK/Wrong boxes (divs) to a cloze

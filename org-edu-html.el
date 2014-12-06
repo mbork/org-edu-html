@@ -6,7 +6,10 @@
   :translate-alist '((template . org-edu-html-template)
 		     (plain-list . org-edu-html-plain-list)
 		     (item . org-edu-html-item)
-		     (underline . org-edu-html-underline)))
+		     (underline . org-edu-html-underline))
+  :options-alist '((:edu-ok-name "EDU_OK_NAME" nil "OK!" t)
+		   (:edu-wrong-name "EDU_WRONG_NAME" nil "Wrong..." t)
+		   (:edu-check-name "EDU_CHECK_NAME" nil "Check" t)))
 
 (defvar org-edu-html-jquery-address "./jquery-2.1.1.min.js"
   "Where to get jQuery from.")
@@ -24,6 +27,11 @@
    (org-html--build-meta-info info)	;!!
 ;   (org-html--build-head info)		;!!
    (org-html--build-mathjax-config info) ;!!
+   (format
+    "<script>\nokName='%s';\nwrongName='%s';\ncheckName='%s';\n</script>\n"
+    (plist-get info :edu-ok-name)
+    (plist-get info :edu-wrong-name)
+    (plist-get info :edu-check-name))
    (org-edu-html-build-jquery-config)
    "</head>\n"
    "<body>\n"
