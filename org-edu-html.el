@@ -117,7 +117,7 @@
 	 (id (concat name (format "%s" (org-export-get-ordinal item info)))))
     (format "<option value=\"%s\">%s</option>"
 	    (if (string= state "on") 1 0)
-	    (if (string= (substring-no-properties contents -1) "\n")
+	    (if (string-match "\n$" contents)
 		(substring contents 0 -1)
 	      contents))))
 
