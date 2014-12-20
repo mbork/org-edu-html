@@ -2,7 +2,7 @@
 #+AUTHOR: Marcin Borkowski
 #+DATE: 2014-10-31
 #+EDU_OK_NAME: How cool is that!
-#+EDU_WRONG_NAME: You don\'t seem to get it.
+#+EDU_WRONG_NAME: You don't seem to "get" it, right?
 #+EDU_CHECK_NAME: Did I get it right?
 
 * Introductory chapter

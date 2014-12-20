@@ -19,6 +19,16 @@
    (format "<script src=\"%s\"></script>\n" org-edu-html-jquery-address)
    "<script src=\"./org-edu-html.js\"></script>\n"))
 
+(defun org-edu-html-encode-plain-text-to-js-string (text)
+  "Convert TEXT to something suitable for JS string by using
+first org-html-encode-plain-text and then escaping quotes and
+ticks."
+  (mapc
+   (lambda (pair)
+     (setq text (replace-regexp-in-string (car pair) (cdr pair) text t t)))
+   '(("\\\\" . "\\\\") ("'" . "\\'") ("\"" . "\\\""))) ; the first one is funny, isn't it?
+  (org-html-encode-plain-text text))
+
 (defun org-edu-html-template (contents info)
   (concat
    "<!DOCTYPE html>\n"
@@ -28,10 +38,10 @@
 ;   (org-html--build-head info)		;!!
    (org-html--build-mathjax-config info) ;!!
    (format
-    "<script>\nokName='%s';\nwrongName='%s';\ncheckName='%s';\n</script>\n"
-    (plist-get info :edu-ok-name)
-    (plist-get info :edu-wrong-name)
-    (plist-get info :edu-check-name))
+    "<script>\nvar okName='%s';\nvar wrongName='%s';\nvar checkName='%s';\n</script>\n"
+    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-ok-name))
+    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-wrong-name))
+    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-check-name)))
    (org-edu-html-build-jquery-config)
    "</head>\n"
    "<body>\n"
