@@ -57,14 +57,14 @@ $( document ).ready(function() {
     // Append a "Check" button and OK/Wrong boxes (divs) to a cloze
     // test (TODO: buton adding should be abstracted away!)
     $("div.cloze").append(
-	'<button type="button" class="cloze-check">Check</button>',
-	'<div class="ok" style="cursor:default" hidden>OK!</div>',
-	'<div class="wrong" style="cursor:default" hidden>Wrong...</div>');
+	'<button type="button" class="cloze-check">' + checkName + '</button>',
+	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
+	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.cloze-check').click(function() {
 	// Hide possible leftovers from previous trials
-	$(this).parent().find('div.ok,div.wrong,div.comment_ok,div.comment_wrong').hide();
+	$(this).parent().find('div.ok,div.wrong').hide();
 
 	// Iterate through the answers and check whether all of them are correct.
 	// TODO: refactor to use reduce?
@@ -74,17 +74,17 @@ $( document ).ready(function() {
 	       { somethingIsWrong = true; }
 	});
 	if (somethingIsWrong) {
-	    $(this).parent().find('div.comment_wrong').show();
+	    $(this).parent().find('div.wrong').show();
 	} else {
-	    $(this).parent().find('div.comment_ok').show();
+	    $(this).parent().find('div.ok').show();
 	}
     	});
 
     // Append a "Check" button and OK/Wrong boxes (divs) to a SCT with "select"
     $("select.sct-sel").parent().append(
-	'<button type="button" class="sct-sel-check">Check</button>',
-	'<div class="ok" style="cursor:default" hidden>OK!</div>',
-	'<div class="wrong" style="cursor:default" hidden>Wrong...</div>');
+	'<button type="button" class="sct-sel-check">' + checkName + '</button>',
+	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
+	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.sct-sel-check').click(function() {
