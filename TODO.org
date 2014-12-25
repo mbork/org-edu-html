@@ -1,0 +1,14 @@
+#+TITLE: Org-edu-HTML TODO list
+#+AUTHOR: Marcin Borkowski <mbork@mbork.pl>
+
+* Missing features
+** TODO Exporting UI
+** TODO Styling through CSS
+** TODO Dividing the HTML file into subfiles
+** TODO SCORM export
+** TODO Randomizing of answer order in choice tests
+** TODO Embedding of arbitrary JS
+* Known bugs, problems and limitations
+** TODO One cannot specify the OK/wrong comments for anything other than a MCT
+** TODO The footer is currently Org-mode's default
+** TODO The syntax is probably far from optimal
