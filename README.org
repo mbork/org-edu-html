@@ -55,11 +55,9 @@ before the list.
 
 ** Cloze tests
 Cloze tests are denoted by a special block =CLOZE=.  In it, underline text fragments which should be rendered as blanks.  You can separate variants with a vertical bar (=|=).  Example:
-#+BEGIN_EXAMPLE
-#+BEGIN_CLOZE
-A _cloze_ test is a test where the _student|learner_ has to type a missing _word|phrase_.
-#+END_CLOZE
-#+END_EXAMPLE
+: #+BEGIN_CLOZE
+: A _cloze_ test is a test where the _student|learner_ has to type a missing _word|phrase_.
+: #+END_CLOZE
 
 * Known bugs and missing features
 See [[file:TODO.org][TODO.org]].
