@@ -6,26 +6,6 @@
 #+EDU_WRONG_NAME: You don't seem to "get" it, right?
 
 * Examples
-** Multiple-choice question
-A multiple-choice question:
-#+ATTR_EDU: :test mct
-- [ ] Wrong answer.
-  #+BEGIN_COMMENT_OK
-  This is a remark for the good answer.
-  #+END_COMMENT_OK
-  #+BEGIN_COMMENT_WRONG
-  This is a remark in case someone gives a wrong answer.
-  #+END_COMMENT_WRONG
-- [ ] Another wrong answer.
-- [X] Right answer.
-  #+BEGIN_COMMENT_OK
-  This is a remark for the good answer.
-  #+END_COMMENT_OK
-  #+BEGIN_COMMENT_WRONG
-  This is a remark in case someone gives a wrong answer.
-  #+END_COMMENT_WRONG
-- [X] Another right answer.
-
 ** Single-choice question
 And now a single-choice question:
 #+ATTR_EDU: :test sct
@@ -45,6 +25,26 @@ And now a single-choice question:
   #+BEGIN_COMMENT_WRONG
   This is a remark in case someone gives a wrong answer.
   #+END_COMMENT_WRONG
+
+** Multiple-choice question
+A multiple-choice question:
+#+ATTR_EDU: :test mct
+- [ ] Wrong answer.
+  #+BEGIN_COMMENT_OK
+  This is a remark for the good answer.
+  #+END_COMMENT_OK
+  #+BEGIN_COMMENT_WRONG
+  This is a remark in case someone gives a wrong answer.
+  #+END_COMMENT_WRONG
+- [ ] Another wrong answer.
+- [X] Right answer.
+  #+BEGIN_COMMENT_OK
+  This is a remark for the good answer.
+  #+END_COMMENT_OK
+  #+BEGIN_COMMENT_WRONG
+  This is a remark in case someone gives a wrong answer.
+  #+END_COMMENT_WRONG
+- [X] Another right answer.
 
 ** Cloze test
 A cloze test:
