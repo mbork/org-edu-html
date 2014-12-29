@@ -1,13 +1,23 @@
 // The JavaScript part of the Org-Edu-HTML project
 // (c) 2014 mbork.pl
 
+// The addControls function adds the button (with a class given as a
+// parameter) and ok/wrong divs to the currenct object(s).
+(function($){
+    $.fn.addControls = function(buttonClass) {
+	return $(this).append(
+	    '<button type="button" class=' + buttonClass + '>' + checkName + '</button>',
+	    '<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
+	    '<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>'
+	);
+    }
+})(jQuery);
+
+
 $( document ).ready(function() {
 
     // Append a "Check" button and OK/Wrong boxes (divs) to a SCT
-    $("fieldset.sct").append(
-	'<button type="button" class="sct-check">' + checkName + '</button>',
-	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
-	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
+    $("fieldset.sct").addControls("sct-check");
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.sct-check').click(function() {
@@ -24,10 +34,7 @@ $( document ).ready(function() {
     });
 
     // Append the "Check" button and OK/Wrong boxes (divs) to a MCT
-    $("fieldset.mct").append(
-	'<button type="button" class="mct-check">' + checkName + '</button>',
-	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
-	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
+    $("fieldset.mct").addControls("mct-check");
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.mct-check').click(function() {
@@ -56,10 +63,7 @@ $( document ).ready(function() {
 
     // Append a "Check" button and OK/Wrong boxes (divs) to a cloze
     // test (TODO: buton adding should be abstracted away!)
-    $("div.cloze").append(
-	'<button type="button" class="cloze-check">' + checkName + '</button>',
-	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
-	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
+    $("div.cloze").addControls("cloze-check");
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.cloze-check').click(function() {
@@ -81,10 +85,7 @@ $( document ).ready(function() {
     	});
 
     // Append a "Check" button and OK/Wrong boxes (divs) to a SCT with "select"
-    $("select.sct-sel").parent().append(
-	'<button type="button" class="sct-sel-check">' + checkName + '</button>',
-	'<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
-	'<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>');
+    $("select.sct-sel").parent().addControls("sct-sel-check");
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.sct-sel-check').click(function() {
