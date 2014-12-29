@@ -24,12 +24,16 @@ $( document ).ready(function() {
 	if($(this).parent().children('div').children('input:checked').attr('value') == 1) {
 	    // If the right answer is checked, hide any OK/Wrong info...
 	    $(this).siblings('div.ok,div.wrong').hide();
+	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
 	    // ...and show the relevant one.
-	    $(this).siblings('div.ok,div.comment_ok').show();
+	    $(this).siblings('div.ok').show();
+	    $(this).siblings('div').find('div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the same.
 	    $(this).siblings('div.ok,div.wrong').hide();
-	    $(this).siblings('div.wrong,div.comment_wrong').show();
+	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
+	    $(this).siblings('div.wrong').show();
+	    $(this).siblings('div').find('div.comment_wrong').show();
 	};
     });
 
