@@ -11,7 +11,7 @@
 ** TODO customization of show/hide functions
 * Known bugs, problems and limitations
 ** TODO One cannot specify the OK/wrong comments for anything other than a MCT/SCT
-** TODO The footer is currently Org-mode's default
+** TODO Rework the postamble
 ** TODO The syntax is probably far from optimal
 ** TODO JS code duplication
 ** TODO Hide comments in a cleaner way

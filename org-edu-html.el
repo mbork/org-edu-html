@@ -19,6 +19,12 @@
    (format "<script src=\"%s\"></script>\n" org-edu-html-jquery-address)
    "<script src=\"./org-edu-html.js\"></script>\n"))
 
+(defun org-edu-html-build-postamble (info)
+  (format "<div id=\"postamble\"<p class=\"author\">Author: %s (%s)</p>\n<p class=\"date\">Date: %s</p>\n</div>"
+	  (org-element-interpret-data (plist-get info :author))
+	  (org-element-interpret-data (plist-get info :email))
+	  (org-element-interpret-data (plist-get info :date))))
+
 (defun org-edu-html-encode-plain-text-to-js-string (text)
   "Convert TEXT to something suitable for JS string by using
 first org-html-encode-plain-text and then escaping quotes and
@@ -45,7 +51,6 @@ ticks."
    (org-edu-html-build-jquery-config)
    "</head>\n"
    "<body>\n"
-   (org-html--build-pre/postamble 'preamble info)
    ;; Global div.
    (format "<%s id=\"%s\">\n"
 	   (nth 1 (assq 'content org-html-divs))
@@ -59,7 +64,7 @@ ticks."
    (format "</%s>\n"
 	   (nth 1 (assq 'content org-html-divs)))
    ;; Postamble (TODO: should probably be changed)
-   (org-html--build-pre/postamble 'postamble info)
+   (org-edu-html-build-postamble info)
    ;; Closing document.
    "</body>\n</html>\n"))
 
