@@ -10,7 +10,11 @@
 	    '<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
 	    '<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>'
 	);
-    }
+    };
+
+    $.fn.hideOkWrong = function() {
+	return $(this).siblings('div.ok,div.wrong').hide();
+    };
 })(jQuery);
 
 
@@ -23,14 +27,14 @@ $( document ).ready(function() {
     $('button.sct-check').click(function() {
 	if($(this).parent().children('div').children('input:checked').attr('value') == 1) {
 	    // If the right answer is checked, hide any OK/Wrong info...
-	    $(this).siblings('div.ok,div.wrong').hide();
+	    $(this).hideOkWrong();
 	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
 	    // ...and show the relevant one.
 	    $(this).siblings('div.ok').show();
 	    $(this).siblings('div').find('div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the same.
-	    $(this).siblings('div.ok,div.wrong').hide();
+	    $(this).hideOkWrong();
 	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
 	    $(this).siblings('div.wrong').show();
 	    $(this).siblings('div').find('div.comment_wrong').show();
@@ -43,7 +47,8 @@ $( document ).ready(function() {
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.mct-check').click(function() {
 	// Hide possible leftovers from previous trials
-	$(this).parent().find('div.ok,div.wrong,div.comment_ok,div.comment_wrong').hide();
+	$(this).hideOkWrong();
+	$(this).parent().find('div.comment_ok,div.comment_wrong').hide();
 
 	// Iterate through the answers and check whether all of them are correct.
 	// TODO: refactor to use reduce?
@@ -72,7 +77,7 @@ $( document ).ready(function() {
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.cloze-check').click(function() {
 	// Hide possible leftovers from previous trials
-	$(this).parent().find('div.ok,div.wrong').hide();
+	$(this).hideOkWrong();
 
 	// Iterate through the answers and check whether all of them are correct.
 	// TODO: refactor to use reduce?
@@ -95,18 +100,18 @@ $( document ).ready(function() {
     $('button.sct-sel-check').click(function() {
 	if($(this).parent().find('select option:selected').val() == "1") {
 	    // If the right answer is checked, hide any OK/Wrong info...
-	    $(this).siblings('div.ok,div.wrong').hide();
+	    $(this).hideOkWrong();
 	    // ...and show the relevant one.
 	    $(this).siblings('div.ok,div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the same.
-	    $(this).siblings('div.ok,div.wrong').hide();
+	    $(this).hideOkWrong();
 	    $(this).siblings('div.wrong,div.comment_wrong').show();
 	};
     });
 
     // Hiding (fading out) the comments about the answers
-    $('div.ok,div.wrong').hide().click(function () {
+    $('div.ok,div.wrong').click(function () {
 	$(this).fadeOut();
     });
     $('div.comment_ok,div.comment_wrong').hide().click(function () {
