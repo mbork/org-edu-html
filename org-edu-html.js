@@ -15,6 +15,12 @@
     $.fn.hideOkWrong = function() {
 	return $(this).siblings('div.ok,div.wrong').hide();
     };
+    $.fn.showOk = function() {
+	return $(this).siblings('div.ok').show();
+    };
+    $.fn.showWrong = function() {
+	return $(this).siblings('div.wrong').show();
+    };
 })(jQuery);
 
 
@@ -30,13 +36,13 @@ $( document ).ready(function() {
 	    $(this).hideOkWrong();
 	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
 	    // ...and show the relevant one.
-	    $(this).siblings('div.ok').show();
+	    $(this).showOk();
 	    $(this).siblings('div').find('div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the same.
 	    $(this).hideOkWrong();
 	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
-	    $(this).siblings('div.wrong').show();
+	    $(this).showWrong();
 	    $(this).siblings('div').find('div.comment_wrong').show();
 	};
     });
@@ -64,9 +70,9 @@ $( document ).ready(function() {
 	    }
     	});
 	if (somethingIsWrong) {
-	    $(this).parent().find('div.wrong').show();
+	    $(this).showWrong();
 	} else {
-	    $(this).parent().find('div.ok').show();
+	    $(this).showOk();
 	}
     });
 
@@ -87,9 +93,9 @@ $( document ).ready(function() {
 	       { somethingIsWrong = true; }
 	});
 	if (somethingIsWrong) {
-	    $(this).parent().find('div.wrong').show();
+	    $(this).showWrong();
 	} else {
-	    $(this).parent().find('div.ok').show();
+	    $(this).showOk();
 	}
     	});
 
@@ -102,11 +108,11 @@ $( document ).ready(function() {
 	    // If the right answer is checked, hide any OK/Wrong info...
 	    $(this).hideOkWrong();
 	    // ...and show the relevant one.
-	    $(this).siblings('div.ok,div.comment_ok').show();
+	    $(this).showOk().siblings('div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the same.
 	    $(this).hideOkWrong();
-	    $(this).siblings('div.wrong,div.comment_wrong').show();
+	    $(this).showWrong().siblings('div.comment_wrong').show();
 	};
     });
 
