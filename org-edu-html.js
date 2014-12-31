@@ -54,7 +54,7 @@ $( document ).ready(function() {
     $('button.mct-check').click(function() {
 	// Hide possible leftovers from previous trials
 	$(this).hideOkWrong();
-	$(this).parent().find('div.comment_ok,div.comment_wrong').hide();
+	$(this).siblings().find('div.comment_ok,div.comment_wrong').hide();
 
 	// Iterate through the answers and check whether all of them are correct.
 	// TODO: refactor to use reduce?
