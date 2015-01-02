@@ -9,7 +9,31 @@
 		     (underline . org-edu-html-underline))
   :options-alist '((:edu-ok-name "EDU_OK_NAME" nil "OK!" t)
 		   (:edu-wrong-name "EDU_WRONG_NAME" nil "Wrong..." t)
-		   (:edu-check-name "EDU_CHECK_NAME" nil "Check" t)))
+		   (:edu-check-name "EDU_CHECK_NAME" nil "Check" t))
+  :menu-entry '(?e "Export to Edu-HTML"
+		   ((?E "As HTML buffer" org-edu-html-export-as-edu-html)
+		    (?e "As HTML file" org-edu-html-export-to-edu-html)
+		    (?o "As HTML file and open"
+			(lambda (a s v b)
+			  (if a (org-edu-html-export-to-edu-html t s v b)
+			    (org-open-file (org-edu-html-export-to-edu-html nil s v b))))))))
+
+(defun org-edu-html-export-as-edu-html
+  (&optional async subtreep visible-only body-only ext-plist)
+  "Export current buffer as Edu-HTML.  The function is modeled
+after org-latex-export-as-latex."
+  (interactive)
+  (org-export-to-buffer 'edu-html "*Org Edu-HTML Export*"
+    async subtreep visible-only body-only ext-plist (lambda () (html-mode))))
+
+(defun org-edu-html-export-to-edu-html
+  (&optional async subtreep visible-only body-only ext-plist)
+  "Export current buffer to an Edu-HTML file.  The function is
+modeled after org-latex-export-as-latex."
+  (interactive)
+  (let ((outfile (org-export-output-file-name ".html" subtreep)))
+    (org-export-to-file 'edu-html outfile
+      async subtreep visible-only body-only ext-plist)))
 
 (defvar org-edu-html-jquery-address "./jquery-2.1.1.min.js"
   "Where to get jQuery from.")
