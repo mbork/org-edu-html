@@ -9,6 +9,7 @@
 ** TODO Randomizing of answer order in choice tests
 ** TODO Embedding of arbitrary JS
 ** TODO customization of show/hide functions
+** TODO update docs - styling
 * Known bugs, problems and limitations
 ** TODO One cannot specify the OK/wrong comments for anything other than a MCT/SCT
 ** TODO Rework the postamble
