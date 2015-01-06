@@ -39,7 +39,7 @@ $( document ).ready(function() {
 	    $(this).showOk();
 	    $(this).siblings('div').find('div.comment_ok').show();
 	} else {
-	    // If the wrong answer is checked, do the same.
+	    // If the wrong answer is checked, do the right thing.
 	    $(this).hideOkWrong();
 	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
 	    $(this).showWrong();
