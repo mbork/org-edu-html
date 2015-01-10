@@ -30,6 +30,12 @@ $( document ).ready(function() {
     $("fieldset.sct").addControls("sct-check");
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
+
+    // TODO: on clicking the button, clone the ok or wrong comments
+    // and put them together with div.ok or div.wrong in a common div;
+    // then show it, and /remove/ it on click.  Also, style it
+    // appropriately.
+
     $('button.sct-check').click(function() {
 	if($(this).parent().children('div').children('input:checked').attr('value') == 1) {
 	    // If the right answer is checked, hide any OK/Wrong info...
