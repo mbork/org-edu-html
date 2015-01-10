@@ -20,3 +20,7 @@ button:hover {
 button:active {
     background : -webkit-linear-gradient(#ccc,#ddd);
 }
+
+fieldset {
+    border-radius : 8px;
+}
