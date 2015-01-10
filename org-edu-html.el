@@ -38,6 +38,9 @@ modeled after org-latex-export-as-latex."
 (defvar org-edu-html-jquery-address "./jquery-2.1.1.min.js"
   "Where to get jQuery from.")
 
+(defvar org-edu-html-stylesheet "./org-edu-html-default.css"
+  "The CSS stylesheet.")
+
 (defun org-edu-html-build-jquery-config ()
   (concat
    (format "<script src=\"%s\"></script>\n" org-edu-html-jquery-address)
@@ -65,6 +68,7 @@ ticks."
    "<html>\n"
    "<head>\n"
    (org-html--build-meta-info info)	;!!
+   (concat "<link rel=\"stylesheet\" type=\"text/css\" href=\"" org-edu-html-stylesheet "\">")
 ;   (org-html--build-head info)		;!!
    (org-html--build-mathjax-config info) ;!!
    (format

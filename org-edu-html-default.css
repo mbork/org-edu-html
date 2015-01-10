@@ -1,0 +1,22 @@
+/* Org-Edu-HTML CSS stylesheet */
+
+body {
+    font-family : "Lucida Sans Unicode" , sans-serif;
+    background-color : lightgray;
+}
+
+button {
+    border : none;
+    border-radius : 12px;
+    padding : 1em;
+    margin-top : 0.5em;
+    background-color : #ddd;
+}
+
+button:hover {
+    background : -webkit-linear-gradient(#ddd,#ccc);
+}
+
+button:active {
+    background : -webkit-linear-gradient(#ccc,#ddd);
+}
