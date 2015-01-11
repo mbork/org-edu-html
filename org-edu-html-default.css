@@ -24,3 +24,9 @@ button:active {
 fieldset {
     border-radius : 8px;
 }
+
+div.comment_ok, div.comment_wrong {
+    display : inline-block;
+    margin-left : 4em;
+    font-size : 80%;
+}
