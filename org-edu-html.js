@@ -7,19 +7,19 @@
     $.fn.addControls = function(buttonClass) {
 	return $(this).append(
 	    '<button type="button" class=' + buttonClass + '>' + checkName + '</button>',
-	    '<div class="ok" style="cursor:default" hidden>' + okName + '</div>',
-	    '<div class="wrong" style="cursor:default" hidden>' + wrongName + '</div>'
+	    '<span class="ok" style="cursor:default" hidden>' + okName + '</span>',
+	    '<span class="wrong" style="cursor:default" hidden>' + wrongName + '</span>'
 	);
     };
 
     $.fn.hideOkWrong = function() {
-	return $(this).siblings('div.ok,div.wrong').hide();
+	return $(this).siblings('span.ok,span.wrong').hide();
     };
     $.fn.showOk = function() {
-	return $(this).siblings('div.ok').show();
+	return $(this).siblings('span.ok').show();
     };
     $.fn.showWrong = function() {
-	return $(this).siblings('div.wrong').show();
+	return $(this).siblings('span.wrong').show();
     };
 })(jQuery);
 
@@ -32,7 +32,7 @@ $( document ).ready(function() {
     // When the user clicks the "Check" button, check the answers and show appropriate things
 
     // TODO: on clicking the button, clone the ok or wrong comments
-    // and put them together with div.ok or div.wrong in a common div;
+    // and put them together with span.ok or span.wrong in a common div;
     // then show it, and /remove/ it on click.  Also, style it
     // appropriately.
 
@@ -123,7 +123,7 @@ $( document ).ready(function() {
     });
 
     // Hiding (fading out) the comments about the answers
-    $('div.ok,div.wrong').click(function () {
+    $('span.ok,span.wrong').click(function () {
 	$(this).fadeOut();
     });
     $('div.comment_ok,div.comment_wrong').hide().click(function () {
