@@ -13,7 +13,10 @@ And now a single-choice question:
 - [ ] Boooo!
 - [X] That's good!
   #+BEGIN_COMMENT_OK
-  This is a remark for the good answer.
+  This is a remark for the good answer.  (And a very long one, for
+  that matter.  One that does not fit in a single line of text.
+  Actually, it spans more than one line.  Two lines, two be more
+  precise.)
   #+END_COMMENT_OK
   #+BEGIN_COMMENT_WRONG
   This is a remark in case someone gives a wrong answer.
