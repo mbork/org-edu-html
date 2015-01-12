@@ -78,7 +78,7 @@ and that's it!
 - [X] 27
 and that's a bit more difficult.
 * COMMENT Config
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:nil num:nil
 * COMMENT Lisp
 (progn
   (if (get-buffer "oeh-test.html")
