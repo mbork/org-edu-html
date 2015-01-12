@@ -29,4 +29,10 @@ div.comment_ok, div.comment_wrong {
     display : inline-block;
     margin-left : 4em;
     font-size : 80%;
+    width : 70%;
+}
+
+fieldset.sct label {
+    display : inline-block;
+    width : 20%;
 }
