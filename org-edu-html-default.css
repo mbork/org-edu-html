@@ -36,3 +36,12 @@ fieldset.sct label {
     display : inline-block;
     width : 20%;
 }
+
+div#postamble {
+    font-size : 60%;
+}
+
+div#postamble p {
+    margin-top : 0px;
+    margin-bottom : 0px;
+}

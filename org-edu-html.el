@@ -47,7 +47,11 @@ modeled after org-latex-export-as-latex."
    "<script src=\"./org-edu-html.js\"></script>\n"))
 
 (defun org-edu-html-build-postamble (info)
-  (format "<div id=\"postamble\"><p class=\"author\">Author: %s (%s)</p>\n<p class=\"date\">Date: %s</p>\n</div>"
+  (format "<div id=\"postamble\">
+  <p>Created with Org-Edu-HTML (c) 2014-2015 Marcin `mbork' Borkowski</p>
+  <p class=\"author\">Author: %s (%s)</p>
+  <p class=\"date\">Date: %s</p>
+</div>"
 	  (org-element-interpret-data (plist-get info :author))
 	  (org-element-interpret-data (plist-get info :email))
 	  (org-element-interpret-data (plist-get info :date))))
