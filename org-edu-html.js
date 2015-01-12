@@ -130,4 +130,9 @@ $( document ).ready(function() {
 	$(this).fadeOut();
 	return false; // to prevent bubbling and (un)checking answer by hiding
     });
+
+    // Moving comments outside the labels
+    $('label > div.comment_ok, label > div.comment_wrong').each(function () {
+	$(this).parent().after(this);
+    });
 });
