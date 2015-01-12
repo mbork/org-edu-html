@@ -5,7 +5,7 @@
 // parameter) and ok/wrong divs to the currenct object(s).
 (function($){
     $.fn.addControls = function(buttonClass) {
-	return $(this).append(
+	return $(this).append('<div class="controls"></div>').find('div.controls').append(
 	    '<button type="button" class=' + buttonClass + '>' + checkName + '</button>',
 	    '<span class="ok" style="cursor:default" hidden>' + okName + '</span>',
 	    '<span class="wrong" style="cursor:default" hidden>' + wrongName + '</span>'
@@ -37,19 +37,19 @@ $( document ).ready(function() {
     // appropriately.
 
     $('button.sct-check').click(function() {
-	if($(this).parent().children('div').children('input:checked').attr('value') == 1) {
+	if($(this).parent().parent().children('div').children('input:checked').attr('value') == 1) {
 	    // If the right answer is checked, hide any OK/Wrong info...
 	    $(this).hideOkWrong();
-	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
+	    $(this).parent().siblings('div').find('div.comment_ok,div.comment_wrong').hide();
 	    // ...and show the relevant one.
 	    $(this).showOk();
-	    $(this).siblings('div').find('div.comment_ok').show();
+	    $(this).parent().siblings('div').find('div.comment_ok').show();
 	} else {
 	    // If the wrong answer is checked, do the right thing.
 	    $(this).hideOkWrong();
-	    $(this).siblings('div').find('div.comment_ok,div.comment_wrong').hide();
+	    $(this).parent().siblings('div').find('div.comment_ok,div.comment_wrong').hide();
 	    $(this).showWrong();
-	    $(this).siblings('div').find('div.comment_wrong').show();
+	    $(this).parent().siblings('div').find('div.comment_wrong').show();
 	};
     });
 
@@ -60,12 +60,12 @@ $( document ).ready(function() {
     $('button.mct-check').click(function() {
 	// Hide possible leftovers from previous trials
 	$(this).hideOkWrong();
-	$(this).siblings().find('div.comment_ok,div.comment_wrong').hide();
+	$(this).parent().siblings().find('div.comment_ok,div.comment_wrong').hide();
 
 	// Iterate through the answers and check whether all of them are correct.
 	// TODO: refactor to use reduce?
     	var somethingIsWrong = false;
-    	$(this).siblings('div').children('input').each(function() {
+    	$(this).parent().siblings('div').children('input').each(function() {
     	    if(($(this).attr('value') == 1) != $(this).is(':checked')) {
 		// Wrong answer
     	    	somethingIsWrong = true;
@@ -94,7 +94,7 @@ $( document ).ready(function() {
 	// Iterate through the answers and check whether all of them are correct.
 	// TODO: refactor to use reduce?
     	var somethingIsWrong = false;
-    	$(this).parent().find('input[type="text"]').each(function() {
+    	$(this).parent().parent().find('input[type="text"]').each(function() {
     	    if(!($.inArray($(this).val(),$(this).attr('correct').split('|')) > -1))
 	       { somethingIsWrong = true; }
 	});
@@ -110,7 +110,7 @@ $( document ).ready(function() {
 
     // When the user clicks the "Check" button, check the answers and show appropriate things
     $('button.sct-sel-check').click(function() {
-	if($(this).parent().find('select option:selected').val() == "1") {
+	if($(this).parent().parent().find('select option:selected').val() == "1") {
 	    // If the right answer is checked, hide any OK/Wrong info...
 	    $(this).hideOkWrong();
 	    // ...and show the relevant one.
