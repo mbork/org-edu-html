@@ -135,4 +135,13 @@ $( document ).ready(function() {
     $('label > div.comment_ok, label > div.comment_wrong').each(function () {
 	$(this).parent().after(this);
     });
+
+    // "Submitting" on pressing Enter
+    $('div.cloze input:text,'
+      + 'fieldset.sct input:radio,'
+      + 'fieldset.mct input:checkbox').keydown(function(event) {
+	if(event.which == 13) {
+	    $(this).parent().parent().find('div.controls > button').click();
+	};
+    });
 });
