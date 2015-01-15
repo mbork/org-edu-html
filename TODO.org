@@ -2,7 +2,7 @@
 #+AUTHOR: Marcin Borkowski <mbork@mbork.pl>
 
 * Missing features
-** TODO Exporting UI
+** DONE Exporting UI
 ** TODO Styling through CSS
 ** TODO Dividing the HTML file into subfiles
 ** TODO SCORM export
@@ -12,9 +12,8 @@
 ** TODO update docs - styling
 * Known bugs, problems and limitations
 ** TODO One cannot specify the OK/wrong comments for anything other than a MCT/SCT
-** TODO Rework the postamble
+** DONE Rework the postamble
 ** TODO The syntax is probably far from optimal
 ** TODO JS code duplication
 ** TODO Hide comments in a cleaner way
-[[file:org-edu-html.js::$('div.comment_ok,div.comment_wrong').hide().click(function%20()%20{][initial hiding]]
 Instead of .hide()-ing div.comment_ok and div.comment_wrong at the start using JS, do it in the CSS.
