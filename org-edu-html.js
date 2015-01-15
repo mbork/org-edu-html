@@ -132,8 +132,8 @@ $( document ).ready(function() {
     });
 
     // Moving comments outside the labels
-    $('label > div.comment_ok, label > div.comment_wrong').each(function () {
-	$(this).parent().after(this);
+    $('span.label > div.comment_ok, span.label > div.comment_wrong').each(function () {
+    	$(this).parent().after(this);
     });
 
     // "Submitting" on pressing Enter

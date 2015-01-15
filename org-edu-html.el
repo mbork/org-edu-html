@@ -147,13 +147,13 @@ ticks."
 				  info
 				  '(plain-list))))
 	 (id (concat name (format "%s" (org-export-get-ordinal item info)))))
-    (format "<div><input type=\"%s\" name=\"%s\" id=\"%s\" value=\"%s\">\n<label for=\"%s\">%s</label></div>"
-	    (if sct "radio" "checkbox")
-	    name
-	    id
-	    (if (eql state 'on) (right-answer-code) (wrong-answer-code))
-	    id
-	    contents)))
+    (format
+     "<div><input type=\"%s\" name=\"%s\" id=\"%s\" value=\"%s\">\n<span class=\"label\">%s</span></div>"
+     (if sct "radio" "checkbox")
+     name
+     id
+     (if (eql state 'on) (right-answer-code) (wrong-answer-code))
+     contents)))
 
 (defun org-edu-html-select-item (item contents info)
   (let* ((state (org-element-property :checkbox item))

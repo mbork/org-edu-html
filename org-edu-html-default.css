@@ -32,7 +32,8 @@ div.comment_ok, div.comment_wrong {
     width : 70%;
 }
 
-fieldset.sct label {
+fieldset.sct span.label,
+fieldset.mct span.label {
     display : inline-block;
     width : 20%;
 }
