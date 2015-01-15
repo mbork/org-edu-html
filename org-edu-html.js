@@ -139,6 +139,12 @@ $( document ).ready(function() {
     	$(this).parent().after(this);
     });
 
+    // Make clicks on labels select the right answers
+    $('span.label').css("cursor","default")
+	.click(function () {
+	    $(this).siblings('input').click();
+	});
+
     // "Submitting" on pressing Enter
     $('div.cloze input:text,'
       + 'fieldset.sct input:radio,'
