@@ -122,16 +122,12 @@ $( document ).ready(function() {
 	};
     });
 
-    // Hiding (fading out) the comments about the answers
-    $('span.ok,span.wrong').hide().css("cursor","default")
-	.click(function () {
-	    $(this).fadeOut();
-	});
-    $('div.comment_ok,div.comment_wrong').hide()
+    // Hiding (fading out) the comments about the answers and hidden texts
+    $('span.ok,span.wrong,div.comment_ok,div.comment_wrong')
+	.hide()
 	.css("cursor","default")
 	.click(function () {
 	    $(this).fadeOut();
-	    return false; // to prevent bubbling and (un)checking answer by hiding
 	});
 
     // Moving comments outside the labels
