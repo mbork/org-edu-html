@@ -7,8 +7,8 @@
     $.fn.addControls = function(buttonClass) {
 	return $(this).append('<div class="controls"></div>').find('div.controls').append(
 	    '<button type="button" class=' + buttonClass + '>' + checkName + '</button>',
-	    '<span class="ok" style="cursor:default" hidden>' + okName + '</span>',
-	    '<span class="wrong" style="cursor:default" hidden>' + wrongName + '</span>'
+	    '<span class="ok">' + okName + '</span>',
+	    '<span class="wrong">' + wrongName + '</span>'
 	);
     };
 
@@ -123,13 +123,16 @@ $( document ).ready(function() {
     });
 
     // Hiding (fading out) the comments about the answers
-    $('span.ok,span.wrong').click(function () {
-	$(this).fadeOut();
-    });
-    $('div.comment_ok,div.comment_wrong').hide().click(function () {
-	$(this).fadeOut();
-	return false; // to prevent bubbling and (un)checking answer by hiding
-    });
+    $('span.ok,span.wrong').hide().css("cursor","default")
+	.click(function () {
+	    $(this).fadeOut();
+	});
+    $('div.comment_ok,div.comment_wrong').hide()
+	.css("cursor","default")
+	.click(function () {
+	    $(this).fadeOut();
+	    return false; // to prevent bubbling and (un)checking answer by hiding
+	});
 
     // Moving comments outside the labels
     $('span.label > div.comment_ok, span.label > div.comment_wrong').each(function () {
