@@ -123,12 +123,18 @@ $( document ).ready(function() {
     });
 
     // Hiding (fading out) the comments about the answers and hidden texts
-    $('span.ok,span.wrong,div.comment_ok,div.comment_wrong')
+    $('span.ok,span.wrong,div.comment_ok,div.comment_wrong,div.hidden')
 	.hide()
 	.css("cursor","default")
 	.click(function () {
 	    $(this).fadeOut();
 	});
+
+    // Button for showing the answer
+    $('div.hidden').after('<button type="button" class="show-hidden">' + showName + '</button>');
+    $('button.show-hidden').click(function() {
+	$(this).prev().fadeIn();
+    });
 
     // Moving comments outside the labels
     $('span.label > div.comment_ok, span.label > div.comment_wrong').each(function () {

@@ -9,7 +9,8 @@
 		     (underline . org-edu-html-underline))
   :options-alist '((:edu-ok-name "EDU_OK_NAME" nil "OK!" t)
 		   (:edu-wrong-name "EDU_WRONG_NAME" nil "Wrong..." t)
-		   (:edu-check-name "EDU_CHECK_NAME" nil "Check" t))
+		   (:edu-check-name "EDU_CHECK_NAME" nil "Check" t)
+		   (:edu-show-name "EDU_SHOW" nil "Show" t))
   :menu-entry '(?e "Export to Edu-HTML"
 		   ((?E "As HTML buffer" org-edu-html-export-as-edu-html)
 		    (?e "As HTML file" org-edu-html-export-to-edu-html)
@@ -76,10 +77,11 @@ ticks."
 ;   (org-html--build-head info)		;!!
    (org-html--build-mathjax-config info) ;!!
    (format
-    "<script>\nvar okName='%s';\nvar wrongName='%s';\nvar checkName='%s';\n</script>\n"
+    "<script>\nvar okName='%s';\nvar wrongName='%s';\nvar checkName='%s';\nvar showName='%s';\n</script>\n"
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-ok-name))
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-wrong-name))
-    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-check-name)))
+    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-check-name))
+    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-show-name)))
    (org-edu-html-build-jquery-config)
    "</head>\n"
    "<body>\n"

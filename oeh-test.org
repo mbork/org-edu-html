@@ -4,6 +4,7 @@
 #+EDU_CHECK_NAME: Did I get it right?
 #+EDU_OK_NAME: How cool is that!
 #+EDU_WRONG_NAME: You don't seem to "get" it, right?
+#+EDU_SHOW: Show me what's hidden here!
 
 * Examples
 ** Single-choice question
@@ -61,6 +62,11 @@ This is the "OK" comment.
 This is the "wrong" comment.
 #+END_COMMENT_WRONG
 #+END_CLOZE
+** Show the answer
+Now think about this question and press the button when you think you know the answer.
+#+BEGIN_HIDDEN
+This is the secret answer.  Hopefully you got it right!
+#+END_HIDDEN
 ** Single-choice drop-down
 3 squared equals
 #+ATTR_EDU: :test select
