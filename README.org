@@ -3,16 +3,17 @@
 
 * Usage
 Prepare a normal Org-mode file.  You can embed single and multiple choice tests and cloze tests in the document.
-
-** Options
-Currently, three options are recognized.  They allow to specify the text on the button ("Check" by default) and the texts displayed when the answer is right or wrong ("OK!" and "Wrong..." by default).  To change them, write something like this somewehere in the Org file:
+** Source file syntax
+*** Options
+Currently, four options are recognized.  They allow to specify the text on the button ("Check" by default) and the texts displayed when the answer is right or wrong ("OK!" and "Wrong..." by default), and the text on the "Show" button.  To change them, write something like this somewehere in the Org file:
 #+BEGIN_EXAMPLE
 #+EDU_CHECK_NAME: Did I get it right?
 #+EDU_OK_NAME: How cool is that!
 #+EDU_WRONG_NAME: You don't seem to "get" it, right?
+#+EDU_SHOW: Show me what's hidden here!
 #+END_EXAMPLE
 
-** Multiple choice tests
+*** Multiple choice tests
 :PROPERTIES:
 :ID:       ac9120a9-4b34-4d9b-be32-9f89715afe77
 :END:
@@ -44,20 +45,33 @@ A multiple-choice question:
 - [X] Another right answer.
 #+END_EXAMPLE
 
-** Single choice tests
+*** Single choice tests
 Multiple choice tests work exactly like [[id:ac9120a9-4b34-4d9b-be32-9f89715afe77][multiple choice tests]]: the only difference is that you should put
 : #+ATTR_EDU: :test mct
 before the list.  The behavior of a SCT when more than one answer is marked as correct is unspecified (currently, /any/ of the answers marked as correct will be accepted).
 
 Alternatively, you can use HTML drop-down lists instead of radio buttons for SCTs; just say
 : #+ATTR_EDU: :test select
-before the list.
+before the list.  Support for drop-down selection lists is poor and might be dropped in the future; please use radiobuttons for SCTs.  Alternatively, if you have a very good reason to use drop-down lists and not radiobuttons, contact me and convince that this is good idea.  (Part of "convincing" is providing both reasonable source syntax /and/ reasonable styling.)
 
-** Cloze tests
+*** Cloze tests
 Cloze tests are denoted by a special block =CLOZE=.  In it, underline text fragments which should be rendered as blanks.  You can separate variants with a vertical bar (=|=).  Example:
 : #+BEGIN_CLOZE
 : A _cloze_ test is a test where the _student|learner_ has to type a missing _word|phrase_.
 : #+END_CLOZE
 
+*** Hidden texts
+An alternative to a choice or cloze test is an activity when a student is presented with a question and a button revealing the answer.  Here it is he or she who is responsible for deciding whether the answer given was correct or not.  Of course, this might be used for other things, too, like hints for problems.  The syntax is easy – you just enclose the hidden text in a special block:
+: Now think about this question and press the button when you think you know the answer.
+: #+BEGIN_HIDDEN
+: This is the secret answer.  Hopefully you got it right!
+: #+END_HIDDEN
+
+** Using the generated tests
+Basically, you choose or write down the answers, click buttons and look at the feedback.  Most texts appearing after pressing buttons can be hidden again by clicking them.
+** HTML structure and CSS styling
+Styling can be done via CSS.  A simple stylesheet (=org-edu-html-default.css=) is provided; since I suck at CSS, it looks rather plain.  Here are a few hints about writing your own.
+
+Most elements are enclosed in =<div>= or =<span>= tags with suitable classes.  Hiding of comments about answers is currently done by JS.  Please consult the exported example file (=oeh-test.html= after exporting =oeh-test.org=) to see all the tags used by Org-edu-HTML.
 * Known bugs and missing features
 See [[file:TODO.org][TODO.org]].
