@@ -2,7 +2,6 @@
 #+AUTHOR: Marcin Borkowski <mbork@mbork.pl>
 
 * Missing features
-** DONE Exporting UI
 ** TODO Styling through CSS
 ** TODO Dividing the HTML file into subfiles
 ** TODO SCORM export
@@ -12,7 +11,6 @@
 ** TODO update docs - styling
 * Known bugs, problems and limitations
 ** TODO One cannot specify the OK/wrong comments for anything other than a MCT/SCT
-** DONE Rework the postamble
 ** TODO The syntax is probably far from optimal
 ** TODO JS code duplication
 ** TODO Hide comments in a cleaner way
