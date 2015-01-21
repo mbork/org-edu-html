@@ -5,6 +5,7 @@
 #+EDU_OK_NAME: How cool is that!
 #+EDU_WRONG_NAME: You don't seem to "get" it, right?
 #+EDU_SHOW: Show me what's hidden here!
+#+EDU_HIDE: Hide the answer again.
 
 * Examples
 ** Single-choice question

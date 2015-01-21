@@ -129,11 +129,20 @@ $( document ).ready(function() {
 	.click(function () {
 	    $(this).fadeOut();
 	});
+    $('div.hidden')
+	.click(function () {
+	    $(this).next('button.show-hidden').text(showName);
+	});
 
     // Button for showing the answer
     $('div.hidden').after('<button type="button" class="show-hidden">' + showName + '</button>');
     $('button.show-hidden').click(function() {
-	$(this).prev().fadeIn();
+	$(this).prev().fadeToggle();
+	if ($(this).text() === showName) {
+	    $(this).text(hideName);
+	} else {
+	    $(this).text(showName);
+	};
     });
 
     // Moving comments outside the labels

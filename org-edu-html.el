@@ -10,7 +10,8 @@
   :options-alist '((:edu-ok-name "EDU_OK_NAME" nil "OK!" t)
 		   (:edu-wrong-name "EDU_WRONG_NAME" nil "Wrong..." t)
 		   (:edu-check-name "EDU_CHECK_NAME" nil "Check" t)
-		   (:edu-show-name "EDU_SHOW" nil "Show" t))
+		   (:edu-show-name "EDU_SHOW" nil "Show" t)
+		   (:edu-hide-name "EDU_HIDE" nil "Hide" t))
   :menu-entry '(?e "Export to Edu-HTML"
 		   ((?E "As HTML buffer" org-edu-html-export-as-edu-html)
 		    (?e "As HTML file" org-edu-html-export-to-edu-html)
@@ -83,12 +84,14 @@ ticks."
 		 "var wrongName='%s';"
 		 "var checkName='%s';"
 		 "var showName='%s';"
+		 "var hideName='%s';"
 		 "</script>")
 	       "\n")
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-ok-name))
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-wrong-name))
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-check-name))
-    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-show-name)))
+    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-show-name))
+    (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-hide-name)))
    "\n"
    (org-edu-html-build-jquery-config)
    "</head>\n"
