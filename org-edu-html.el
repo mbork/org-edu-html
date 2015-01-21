@@ -77,11 +77,19 @@ ticks."
 ;   (org-html--build-head info)		;!!
    (org-html--build-mathjax-config info) ;!!
    (format
-    "<script>\nvar okName='%s';\nvar wrongName='%s';\nvar checkName='%s';\nvar showName='%s';\n</script>\n"
+    (mapconcat #'identity
+	       '("<script>"
+		 "var okName='%s';"
+		 "var wrongName='%s';"
+		 "var checkName='%s';"
+		 "var showName='%s';"
+		 "</script>")
+	       "\n")
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-ok-name))
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-wrong-name))
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-check-name))
     (org-edu-html-encode-plain-text-to-js-string (plist-get info :edu-show-name)))
+   "\n"
    (org-edu-html-build-jquery-config)
    "</head>\n"
    "<body>\n"
