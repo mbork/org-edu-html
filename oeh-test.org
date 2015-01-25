@@ -62,6 +62,10 @@ This is the "OK" comment.
 #+BEGIN_COMMENT_WRONG
 This is the "wrong" comment.
 #+END_COMMENT_WRONG
+#+ATTR_HTML: :data-show-text <Show>!!! :data-hide-text "Hide" this...
+#+BEGIN_HIDDEN
+This is a hint for this problem!
+#+END_HIDDEN
 #+END_CLOZE
 ** Show the answer
 Now think about this question and press the button when you think you know the answer.

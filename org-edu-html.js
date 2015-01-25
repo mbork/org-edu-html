@@ -21,6 +21,12 @@
     $.fn.showWrong = function() {
 	return $(this).siblings('span.wrong').show();
     };
+    $.fn.getShowName = function() {
+	return $(this).data('showText') || showName;
+    };
+    $.fn.getHideName = function() {
+	return $(this).data('hideText') || hideName;
+    };
 })(jQuery);
 
 
@@ -131,17 +137,20 @@ $( document ).ready(function() {
 	});
     $('div.hidden')
 	.click(function () {
-	    $(this).next('button.show-hidden').text(showName);
+	    $(this).next('button.show-hidden').text($(this).getShowName());
 	});
 
     // Button for showing the answer
-    $('div.hidden').after('<button type="button" class="show-hidden">' + showName + '</button>');
+    $('div.hidden').after('<button type="button" class="show-hidden"></button>');
+    $('button.show-hidden').each(function() {
+	$(this).text($(this).prev('div.hidden').getShowName());
+    });
     $('button.show-hidden').click(function() {
 	$(this).prev().fadeToggle();
-	if ($(this).text() === showName) {
-	    $(this).text(hideName);
+	if ($(this).text() === $(this).prev('div.hidden').getShowName()) {
+	    $(this).text($(this).prev('div.hidden').getHideName());
 	} else {
-	    $(this).text(showName);
+	    $(this).text($(this).prev('div.hidden').getShowName());
 	};
     });
 
