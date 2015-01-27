@@ -6,6 +6,7 @@
   :translate-alist '((template . org-edu-html-template)
 		     (plain-list . org-edu-html-plain-list)
 		     (item . org-edu-html-item)
+		     (special-block . org-edu-html-special-block)
 		     (underline . org-edu-html-underline))
   :options-alist '((:edu-ok-name "EDU_OK_NAME" nil "OK!" t)
 		   (:edu-wrong-name "EDU_WRONG_NAME" nil "Wrong..." t)
@@ -207,3 +208,47 @@ a cloze."
 				  (lambda (el info)
 				    (string= (org-element-property :type el) "CLOZE")))
 	  contents))
+
+(defun org-edu-html-special-block (special-block contents info)
+  "Transcode a special block into a suitable <div> as in ox-html,
+but with one twist: if the block type is \"hidden\", check for
+:show and :hide keywords and encode them as suitable attributes.
+
+Part of this function is copied (with simplifications) from
+org-html-special-block."
+  (if (not (string= (downcase (org-element-property :type special-block)) "hidden"))
+      (org-html-special-block special-block contents info)
+    (let* ((keywords-string (save-excursion
+			      (buffer-substring-no-properties
+			       (progn (goto-char (org-element-property :post-affiliated special-block))
+				      (let ((case-fold-search t)) (search-forward "#+begin_hidden "))
+				      (point))
+			       (progn (end-of-line)
+				      (point)))))
+	   (keywords-alist (keywords-string-to-alist keywords-string))
+	   (contents (or contents ""))
+	   (attributes (org-export-read-attribute :attr_html special-block))
+	   (attributes (plist-put attributes :class "hidden"))
+	   (show-name (assoc "show" keywords-alist))
+	   (hide-name (assoc "hide" keywords-alist)))
+      (if show-name
+	  (setq attributes (plist-put attributes :data-show-text (cdr show-name))))
+      (if hide-name
+	  (setq attributes (plist-put attributes :data-hide-text (cdr hide-name))))
+      (setq attributes (org-html--make-attribute-string attributes))
+      (format "<div %s>\n%s\n</div>" attributes contents))))
+
+(defun keywords-string-to-alist (keywords-string)
+  "Convert a string with keywords (looking like in a plist) into an alist
+\(with keys being strings, without leading colons).  For instance,
+this: \":foo bar :baz qux \" gets converted into `((\"baz\"
+. \"qux\") (\"foo\" . \"bar\"))'.  Notice that the trailing space
+gets trimmed."
+  (let ((start 0) keywords-alist)
+    (while (string-match ":\\([a-z]+\\) \\([^:]*\\)\\( \\|$\\)" keywords-string start)
+      (push (cons (match-string 1 keywords-string)
+		  (save-match-data
+		    (string-trim-right (match-string 2 keywords-string))))
+	    keywords-alist)
+      (setq start (match-end 2)))
+    keywords-alist))
