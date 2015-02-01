@@ -252,3 +252,5 @@ gets trimmed."
 	    keywords-alist)
       (setq start (match-end 2)))
     keywords-alist))
+
+(provide 'org-edu-html)
