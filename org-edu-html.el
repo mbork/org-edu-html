@@ -1,6 +1,10 @@
 ;; Org-edu-HTML - HTML-based exporter for educational materials
 
 (require 'ox-html)
+(require 'org-one-to-many)
+
+(defvar org-edu-html-split-tag "split"
+  "Tag to mark where splitting should occur.")
 
 (org-export-define-derived-backend 'edu-html 'html
   :translate-alist '((template . org-edu-html-template)
