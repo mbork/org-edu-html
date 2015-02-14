@@ -257,4 +257,12 @@ gets trimmed."
       (setq start (match-end 2)))
     keywords-alist))
 
+(defun org-export-file (backend infile outfile)
+  "Loads INFILE to a temp buffer and exports it to OUTFILE, using
+BACKEND exporter.  Return OUTFILE."
+  (with-temp-buffer
+    (insert-file-contents infile)
+    (org-mode)
+    (org-export-to-file backend outfile)))
+
 (provide 'org-edu-html)
