@@ -257,6 +257,22 @@ gets trimmed."
       (setq start (match-end 2)))
     keywords-alist))
 
+(defun org-edu-html-split-and-generate-html ()
+  "Generate an empty directory with a unique name, use
+org-one-to-many to split the current org buffer into individual
+files in that directory, and convert them all to html.  Returns the
+list of generated html files."
+  (let* ((dirname (make-temp-file "org-edu-html" t))
+	 (files (org-one-to-many org-edu-html-split-tag dirname)))
+    (mapcar (lambda (infile)
+	      (org-export-file 'edu-html
+			       (concat dirname "/" infile)
+			       (concat dirname
+					"/"
+					(file-name-base infile)
+					".html")))
+	    files)))
+
 (defun org-export-file (backend infile outfile)
   "Loads INFILE to a temp buffer and exports it to OUTFILE, using
 BACKEND exporter.  Return OUTFILE."
