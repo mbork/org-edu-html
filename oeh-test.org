@@ -71,7 +71,7 @@ Now think about this question and press the button when you think you know the a
 #+BEGIN_HIDDEN :show Show me the hint! :hide Hide the hint again!
 This is the secret answer.  Hopefully you got it right!
 #+END_HIDDEN
-** Single-choice drop-down
+** Single-choice drop-down					      :split:
 3 squared equals
 #+ATTR_EDU: :test select
 - [ ] 1
