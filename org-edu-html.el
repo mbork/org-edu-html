@@ -281,4 +281,41 @@ BACKEND exporter.  Return OUTFILE."
     (org-mode)
     (org-export-to-file backend outfile)))
 
+;; The "backend" org-scorm-manifest transforms an "empty" outline
+;; (i.e., one containing only headlines with links, as produced by
+;; org-one-to-many) into an xml "organization" structure needed by
+;; SCORM.
+(org-export-define-backend 'org-scorm-manifest
+  '((headline . org-scorm-manifest-headline)
+    (link . org-scorm-manifest-link)))
+
+(defun org-scorm-manifest-link (link desc info)
+  "Convert the link to an XML element suitable for inclusion in
+a SCORM package manifest."
+  (let ((resource-empty-p
+	 (with-temp-buffer
+	   (insert-file-contents (org-element-property :path link))
+	   (forward-line)
+	   (eobp))))
+    (format "<item identifier=\"%s\"%s>\n<title>%s</title></item>"
+	    (concat (file-name-sans-extension (org-element-property :path link)) "-item")
+	    (if resource-empty-p ""
+	      (concat " identifierref=\""
+		      (file-name-sans-extension (org-element-property :path link))
+		      "-resource\""))
+	    desc)))
+
+(defun org-scorm-manifest-headline (headline contents info)
+  "Transcode a headline with a link from an intermediate org file
+used to generate a SCORM package.  There is one extremely dirty
+hack: if the contents are not empty, we need to put them before
+the closing \"</item\" of the link from the headline, so we use regex
+replacement in a string."
+  (let ((link (org-export-data (org-element-property :title headline) info)))
+    (if contents
+	(replace-regexp-in-string "</item>$"
+				  (concat contents "</item>")
+				  link t t)
+      link)))
+
 (provide 'org-edu-html)
