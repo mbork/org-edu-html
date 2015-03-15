@@ -273,13 +273,41 @@ list of generated html files."
 				       ".html")))
 	    files)))
 
+(defvar org-edu-html-dependencies ()
+  "List of filenames (currently only inline images and bitmaps
+with equations if dvipng or imagemagick is used) that the
+currently translated file depends on.")
+
+(defun org-edu-html-store-latex-fragment (link)
+  "Given a LINK, store the filename somewhere and return the link
+back."
+  (push (if (string-match "^<img src=\"\\([^\"]+\\)\"" link)
+	    (match-string-no-properties 1 link)
+	  "")
+	org-edu-html-dependencies)
+  link)
+
+(advice-add 'org-html-latex-fragment :filter-return #'org-edu-html-store-latex-fragment)
+
+(defun org-edu-html-store-inline-image (oldfun link rules)
+  "Given the function `org-html-inline-image-p' and its
+arguments, store the filename somewhere and return the link."
+  (let ((result (funcall oldfun link rules)))
+    (if result
+	(push (org-element-property :path link) org-edu-html-dependencies))
+    result))
+
+(advice-add 'org-export-inline-image-p :around #'org-edu-html-store-inline-image)
+
 (defun org-export-file (backend infile outfile)
   "Loads INFILE to a temp buffer and exports it to OUTFILE, using
-BACKEND exporter.  Return OUTFILE."
+BACKEND exporter.  Return a list whose car is OUTFILE and whose
+cdr is the list of dependencies."
+  (setq org-edu-html-dependencies ())
   (with-temp-buffer
     (insert-file-contents infile)
     (org-mode)
-    (org-export-to-file backend outfile)))
+    (cons (org-export-to-file backend outfile) org-edu-html-dependencies)))
 
 ;; The "backend" org-scorm-manifest transforms an "empty" outline
 ;; (i.e., one containing only headlines with links, as produced by
