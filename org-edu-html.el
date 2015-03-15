@@ -268,9 +268,9 @@ list of generated html files."
 	      (org-export-file 'edu-html
 			       (concat dirname "/" infile)
 			       (concat dirname
-					"/"
-					(file-name-base infile)
-					".html")))
+				       "/"
+				       (file-name-base infile)
+				       ".html")))
 	    files)))
 
 (defun org-export-file (backend infile outfile)
