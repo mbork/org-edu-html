@@ -265,12 +265,14 @@ list of generated html files."
   (let* ((dirname (make-temp-file (expand-file-name (org-export-output-file-name "")) t))
 	 (files (org-one-to-many org-edu-html-split-tag dirname)))
     (mapcar (lambda (infile)
-	      (org-export-file 'edu-html
-			       (concat dirname "/" infile)
-			       (concat dirname
-				       "/"
-				       (file-name-base infile)
-				       ".html")))
+	      (let ((filelist
+		     (org-export-file 'edu-html
+				      (concat dirname "/" infile)
+				      (concat dirname
+					      "/"
+					      (file-name-base infile)
+					      ".html"))))
+		(cons (file-name-nondirectory (car filelist)) (cdr filelist))))
 	    files)))
 
 (defvar org-edu-html-dependencies ()
