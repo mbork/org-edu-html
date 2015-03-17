@@ -225,7 +225,7 @@ org-html-special-block."
     (let* ((keywords-string (save-excursion
 			      (buffer-substring-no-properties
 			       (progn (goto-char (org-element-property :post-affiliated special-block))
-				      (let ((case-fold-search t)) (search-forward "#+begin_hidden "))
+				      (let ((case-fold-search t)) (re-search-forward "#\\+begin_hidden *"))
 				      (point))
 			       (progn (end-of-line)
 				      (point)))))
