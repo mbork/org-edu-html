@@ -281,10 +281,8 @@ currently translated file depends on.")
 (defun org-edu-html-store-latex-fragment (link)
   "Given a LINK, store the filename somewhere and return the link
 back."
-  (push (if (string-match "^<img src=\"\\([^\"]+\\)\"" link)
-	    (match-string-no-properties 1 link)
-	  "")
-	org-edu-html-dependencies)
+  (if (string-match "^<img src=\"\\([^\"]+\\)\"" link)
+      (push (match-string-no-properties 1 link) org-edu-html-dependencies))
   link)
 
 (advice-add 'org-html-latex-fragment :filter-return #'org-edu-html-store-latex-fragment)
