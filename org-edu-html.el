@@ -262,7 +262,7 @@ gets trimmed."
 org-one-to-many to split the current org buffer into individual
 files in that directory, and convert them all to html.  Returns the
 list of generated html files."
-  (let* ((dirname (make-temp-file "org-edu-html" t))
+  (let* ((dirname (make-temp-file (expand-file-name (org-export-output-file-name "")) t))
 	 (files (org-one-to-many org-edu-html-split-tag dirname)))
     (mapcar (lambda (infile)
 	      (org-export-file 'edu-html
