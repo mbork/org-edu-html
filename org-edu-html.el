@@ -275,6 +275,16 @@ list of generated html files."
 		(cons (file-name-nondirectory (car filelist)) (cdr filelist))))
 	    files)))
 
+(defun concat-lines-with-indentation (indent &rest lines)
+  "Given the amount of indentation and some strings (LINES),
+concatenate them, prepending INDENT spaces to each line."
+  (apply #'concat (let ((indent-string (make-string indent 32)))
+		    (mapcar (lambda (line)
+			      (if (string= (substring line -1 (length line)) "\n")
+				  (concat indent-string line)
+				(concat indent-string line "\n")))
+			    lines))))
+
 (defvar org-edu-html-dependencies ()
   "List of filenames (currently only inline images and bitmaps
 with equations if dvipng or imagemagick is used) that the
