@@ -281,7 +281,7 @@ list of files.  The resource identifier is the name of the
 entry-point file wthout extension."
   (apply #'concat-lines-with-indentation
 	 2
-	 (format "<resource identifier=\"%s\" type=\"webcontent\" adlcp:scormtype=\"sco\" href=\"%s\">"
+	 (format "<resource identifier=\"res-%s\" type=\"webcontent\" adlcp:scormtype=\"sco\" href=\"%s\">"
 		 (car filelist) (car filelist))
 	 (append			; this hack is needed since
 					; the last-but-one, not the
