@@ -275,6 +275,22 @@ list of generated html files."
 		(cons (file-name-nondirectory (car filelist)) (cdr filelist))))
 	    files)))
 
+(defun org-edu-html-generate-resource (filelist)
+  "Generate the <resource> element of the XML file, given the
+list of files.  The resource identifier is the name of the
+entry-point file wthout extension."
+  (apply #'concat-lines-with-indentation
+	 2
+	 (format "<resource identifier=\"%s\" type=\"webcontent\" adlcp:scormtype=\"sco\" href=\"%s\">"
+		 (car filelist) (car filelist))
+	 (append			; this hack is needed since
+					; the last-but-one, not the
+					; last arg is a list.
+	  (mapcar (lambda (filename)
+		    (concat-lines-with-indentation 2 (format "<file href=\"%s\"/>" filename)))
+		  filelist)
+	  '("</resource>"))))
+
 (defun concat-lines-with-indentation (indent &rest lines)
   "Given the amount of indentation and some strings (LINES),
 concatenate them, prepending INDENT spaces to each line."
