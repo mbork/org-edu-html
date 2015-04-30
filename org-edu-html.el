@@ -2,6 +2,7 @@
 
 (require 'ox-html)
 (require 'org-one-to-many)
+(require 'subr-x)			; for string-trim-right
 
 (defvar org-edu-html-split-tag "split"
   "Tag to mark where splitting should occur.")
