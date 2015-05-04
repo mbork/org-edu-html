@@ -50,11 +50,13 @@ modeled after org-latex-export-as-latex."
   "The CSS stylesheet.")
 
 (defun org-edu-html-build-jquery-config ()
+  "Return the line calling JS scripts (jquery and org-edu-html.js)."
   (concat
    (format "<script src=\"%s\"></script>\n" org-edu-html-jquery-address)
    "<script src=\"./org-edu-html.js\"></script>\n"))
 
 (defun org-edu-html-build-postamble (info)
+  "Return the postamble with author info."
   (format "<div id=\"postamble\">
   <p>Created with Org-Edu-HTML (c) 2014-2015 Marcin `mbork' Borkowski</p>
   <p class=\"author\">Author: %s (%s)</p>
@@ -75,6 +77,7 @@ ticks."
   (org-html-encode-plain-text text))
 
 (defun org-edu-html-template (contents info)
+  "Return the template of the whole HTML file."
   (concat
    "<!DOCTYPE html>\n"
    "<html>\n"
@@ -120,6 +123,8 @@ ticks."
    "</body>\n</html>\n"))
 
 (defun org-edu-html-plain-list (plain-list contents info)
+  "Transcode a plain list.  This function is a dispatcher for
+\"normal\" lists and choice tests."
   (cond
    ((string= (org-export-read-attribute :attr_edu plain-list :test) "mct")
     (org-edu-html-mct-test plain-list contents info))
@@ -130,15 +135,17 @@ ticks."
    (t (org-html-plain-list plain-list contents info))))
 
 (defun org-edu-html-mct-test (plain-list contents info &optional sct)
+  "Transcoder for multiple choice tests."
   (format "<form>\n<fieldset class=\"%s\">\n%s\n</fieldset>\n</form>"
-   (if sct "sct" "mct")
-   contents))
+	  (if sct "sct" "mct")
+	  contents))
 
 (defun org-edu-html-select-test (plain-list contents info)
+  "Transcoder for \"select\" tests (deprecated)."
   (format "<form>\n<select class=\"sct-sel\">\n%s</select>\n</form>" contents))
 
 (defun org-edu-html-item (item contents info)
-  ;; (org-html-item (item contents info)))
+  "Transcoder for a single item."
   (cond
    ((string=
      (org-export-read-attribute :attr_edu (org-element-property :parent item) :test) "mct")
@@ -160,6 +167,7 @@ ticks."
   "0")
 
 (defun org-edu-html-mct-item (item contents info &optional sct)
+  "Transcoder for a multiple-choice test item (with a checkbox)."
   (let* ((state (org-element-property :checkbox item))
 	 (name (number-to-string (org-export-get-ordinal
 				  (org-element-property :parent item)
@@ -175,6 +183,7 @@ ticks."
      contents)))
 
 (defun org-edu-html-select-item (item contents info)
+  "Transcoder for a select-test item (deprecated)."
   (let* ((state (org-element-property :checkbox item))
 	 (name (number-to-string (org-export-get-ordinal
 				  (org-element-property :parent item)
@@ -206,6 +215,7 @@ a cloze."
     (org-html-underline underline contents info)))
 
 (defun org-edu-html-cloze (cloze contents info)
+  "Transcoder for a cloze test (single gap)."
   (format "<input type=\"text\" name=\"%s\" correct=\"%s\">"
 	  (org-export-get-ordinal (org-export-get-parent (org-export-get-parent cloze))
 				  info
